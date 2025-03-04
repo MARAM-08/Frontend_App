@@ -38,6 +38,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldColors
 import androidx.compose.material3.TextFieldDefaults
@@ -216,73 +217,69 @@ class MainActivity : ComponentActivity() {
                                      .background(color = Color(0xFFFFFFFF))
                              )
 
-                         var email by remember { mutableStateOf("") }
-                         var password by remember { mutableStateOf("") }
-                   
-                        Column(
-                            modifier = Modifier
-                                .fillMaxSize()
-                                .padding(16.dp),
-                            verticalArrangement = Arrangement.spacedBy(16.dp)
-                    ) {
-                            TextField(
-                                value = email,
-                                onValueChange = { email = it },
-                                label = { Text("Email or Username") },
-                                modifier = Modifier
-                                    //.fillMaxWidth()
-                                    .padding(1.dp)
-                                    .border(
-                                        width = 1.dp,
-                                        color = Color(0xFF2C69DE),
-                                        shape = RoundedCornerShape(size = 16.dp)
-                                    )
-                                    .width(700.dp)
-                                    .height(45.dp)
-                                    .offset(x = -200.dp, y = 250.dp),
-                                textStyle = androidx.compose.ui.text.TextStyle(
-                                    color = Color.Black
-                                ),
-
-                                colors = TextFieldDefaults.textFieldColors(
-                                    containerColor = Color.White
-
-                                )
-                            )
 
 
-                            TextField(
-                                value = password,
-                                onValueChange = { password = it },
-                                label = { Text("Password") },
-                                visualTransformation = PasswordVisualTransformation(),
-                                modifier = Modifier
-                                    //.fillMaxWidth()
-                                    .padding(1.dp)
-                                    .border(
-                                        width = 1.dp,
-                                        color = Color(0xFF2C69DE),
-                                        shape = RoundedCornerShape(size = 16.dp)
-                                    )
-                                    .width(700.dp)
-                                    .height(45.dp)
-                                    .offset(x = -400.dp, y = 400.dp)
-                                    .padding(8.dp),
-                                colors = TextFieldDefaults.textFieldColors(containerColor = Color.White)
-                            )
-                        }
                      }
-
+                    LoginScreen()
                 }
 
                 }
                 }
+
             }
         }
 
 
 }
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun LoginScreen() {
 
+    var email by remember { mutableStateOf("") }
+    var password by remember { mutableStateOf("") }
+
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .offset(y = 100.dp)
+            .padding(horizontal = 32.dp, vertical = 100.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        OutlinedTextField(
+            value = email,
+            onValueChange = { email = it },
+            label = { Text("Email or Username") },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp),
+            textStyle = androidx.compose.ui.text.TextStyle(color = Color.Black),
+            shape = RoundedCornerShape(16.dp),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color(0xFF2C69DE),
+                unfocusedBorderColor = Color(0xFF2C69DE),
+                containerColor = Color.White
+            )
+        )
+
+        OutlinedTextField(
+            value = password,
+            onValueChange = { password = it },
+            label = { Text("Password") },
+            visualTransformation = PasswordVisualTransformation(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp),
+            textStyle = androidx.compose.ui.text.TextStyle(color = Color.Black),
+            shape = RoundedCornerShape(16.dp),
+            colors = TextFieldDefaults.outlinedTextFieldColors(
+                focusedBorderColor = Color(0xFF2C69DE),
+                unfocusedBorderColor = Color(0xFF2C69DE),
+                containerColor = Color.White
+            )
+        )
+    }
+}
 
 
 
@@ -291,6 +288,9 @@ class MainActivity : ComponentActivity() {
 fun Login(name: String) {
     Text(text = name)
 }
+
+
+
 
 @Preview(showBackground = true)
 @Composable
@@ -301,4 +301,8 @@ fun LoginPreview() {
 
         }
     }
+}
+@Composable
+fun PreviewLoginScreen() {
+    LoginScreen()
 }
