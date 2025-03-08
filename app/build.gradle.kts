@@ -2,14 +2,22 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+
+    id ("kotlin-kapt")
+
+        id ("com.android.application")
+        id ("org.jetbrains.kotlin.android")
+        id ("kotlin-kapt")
+        id ("dagger.hilt.android.plugin")
+
 }
 
 android {
-    namespace = "com.example.my_app"
+    namespace = "com.example.app_projet"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.my_app"
+        applicationId = "com.example.app_projet"
         minSdk = 24
         targetSdk = 35
         versionCode = 1
@@ -49,12 +57,40 @@ dependencies {
     implementation(libs.androidx.ui.graphics)
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
-    implementation(libs.androidx.benchmark.macro)
     testImplementation(libs.junit)
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.junit.jupiter)
+    testImplementation(libs.junit.junit)
+    testImplementation(project(":app"))
+    testImplementation(project(":app"))
+    testImplementation(project(":app"))
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    implementation("com.squareup.retrofit2:retrofit:2.9.0") // API Calls
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0") // Convert JSON to Kotlin
+    // Jetpack Compose Core
+    implementation("androidx.compose.ui:ui:1.6.0")
+    implementation("androidx.compose.material3:material3:1.2.0")
+
+    // ViewModel for Compose
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+
+    // Coroutines (for handling async API calls)
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+
+        implementation ("com.google.dagger:hilt-android:2.44")
+        kapt ("com.google.dagger:hilt-compiler:2.44")
+
+        implementation( "androidx.lifecycle:lifecycle-viewmodel-compose:2.6.2")
+        implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
+
+        implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+        implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
+
+
 }
